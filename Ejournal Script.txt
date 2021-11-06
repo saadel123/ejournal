@@ -1,0 +1,64 @@
+create user ejournal identified by ejournal 
+grant resource,connect to control;
+connect ejournal /ejournal ;
+
+
+create table compte (login varchar2(50) primary key,
+mdp varchar2(50),
+role varchar2(255) check (role in('journaliste','redacteur en chef')));
+
+create table Categorie(idcat number(15) primary key,
+description varchar2(154));
+
+create table journaliste(idj number(10) primary key,
+nom varchar2(255),
+prenom varchar2(255),
+email varchar2(255),
+login varchar2(255),
+constraint log_cmpt_fk foreign key (login) references compte(login));
+ 
+create table article (ida number(10) primary key,
+titre varchar2(150),text varchar2(2255), 
+img varchar2(255) ,
+datepub date ,
+datecreation date,
+etat varchar2(55) check(etat in('accepte','refuse','en cours')),
+idj number(10),
+idcat number(10),
+constraint idj_journ_fk foreign key (idj) references journaliste(idj),
+constraint idca_categ_fk foreign key(idcat) references categorie(idcat));
+
+create table commentaire(idc number(10) primary key,
+pseudo varchar2(55),
+titre varchar2(55),
+datecom date ,
+text varchar2(1000),
+email varchar2(55),
+etat varchar2(55) check(etat in('accepte','refuse','en cours')),
+nbrlike number(15) ,
+nbrunlike number(15),
+ida number(10) references article(ida),
+sessionid varchar2(100)
+);
+
+create table likes (idc number(10) references commentaire(idc),
+sessionid varchar2(100),
+action varchar2(10),
+CONSTRAINT constraint_likes_ck check (action in ('like','unlike')),
+CONSTRAINT constraint_likes_pk primary key (sessionid,idc)
+);
+create sequence seq_comm;
+create sequence seq_art start with 10;
+
+
+insert into compte values('samir','samir','journaliste');
+insert into compte values('nabil','nabil','redacteur en chef');
+
+insert into journaliste values(1,'samir','samir','samir@gmail.com','samir');
+insert into journaliste values(3,'nabil','foad','nabil@gmail.com','nabil');
+
+insert into categorie values(1,'sport');
+insert into categorie values(2,'politique');
+insert into categorie values(3,'musique');
+//inserer quelques articles.
+commit;

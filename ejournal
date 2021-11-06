@@ -1,0 +1,231 @@
+--------------------------------------------------------
+--  File created - Saturday-November-06-2021   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence SEQ_ART
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "JOURNAL"."SEQ_ART"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 30 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_COMM
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "JOURNAL"."SEQ_COMM"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table ARTICLE
+--------------------------------------------------------
+
+  CREATE TABLE "JOURNAL"."ARTICLE" 
+   (	"IDA" NUMBER(10,0), 
+	"TITRE" VARCHAR2(150 BYTE), 
+	"TEXT" VARCHAR2(2255 BYTE), 
+	"IMG" VARCHAR2(255 BYTE), 
+	"DATEPUB" DATE, 
+	"DATECREATION" DATE, 
+	"ETAT" VARCHAR2(55 BYTE), 
+	"IDJ" NUMBER(10,0), 
+	"IDCAT" NUMBER(10,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table CATEGORIE
+--------------------------------------------------------
+
+  CREATE TABLE "JOURNAL"."CATEGORIE" 
+   (	"IDCAT" NUMBER(15,0), 
+	"DESCRIPTION" VARCHAR2(154 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table COMMENTAIRE
+--------------------------------------------------------
+
+  CREATE TABLE "JOURNAL"."COMMENTAIRE" 
+   (	"IDC" NUMBER(10,0), 
+	"PSEUDO" VARCHAR2(55 BYTE), 
+	"TITRE" VARCHAR2(55 BYTE), 
+	"DATECOM" DATE, 
+	"TEXT" VARCHAR2(1000 BYTE), 
+	"EMAIL" VARCHAR2(55 BYTE), 
+	"ETAT" VARCHAR2(55 BYTE), 
+	"NBRLIKE" NUMBER(15,0), 
+	"NBRUNLIKE" NUMBER(15,0), 
+	"IDA" NUMBER(10,0), 
+	"SESSIONID" VARCHAR2(100 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table COMPTE
+--------------------------------------------------------
+
+  CREATE TABLE "JOURNAL"."COMPTE" 
+   (	"LOGIN" VARCHAR2(50 BYTE), 
+	"MDP" VARCHAR2(50 BYTE), 
+	"ROLE" VARCHAR2(255 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table JOURNALISTE
+--------------------------------------------------------
+
+  CREATE TABLE "JOURNAL"."JOURNALISTE" 
+   (	"IDJ" NUMBER(10,0), 
+	"NOM" VARCHAR2(255 BYTE), 
+	"PRENOM" VARCHAR2(255 BYTE), 
+	"EMAIL" VARCHAR2(255 BYTE), 
+	"LOGIN" VARCHAR2(255 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table LIKES
+--------------------------------------------------------
+
+  CREATE TABLE "JOURNAL"."LIKES" 
+   (	"IDC" NUMBER(10,0), 
+	"SESSIONID" VARCHAR2(100 BYTE), 
+	"ACTION" VARCHAR2(10 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into JOURNAL.ARTICLE
+SET DEFINE OFF;
+Insert into JOURNAL.ARTICLE (IDA,TITRE,TEXT,IMG,DATEPUB,DATECREATION,ETAT,IDJ,IDCAT) values (1,'italie city','many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).','italie.jpg',to_date('27-MAY-21','DD-MON-RR'),to_date('27-MAY-21','DD-MON-RR'),'accepte',1,2);
+Insert into JOURNAL.ARTICLE (IDA,TITRE,TEXT,IMG,DATEPUB,DATECREATION,ETAT,IDJ,IDCAT) values (2,'man city','Manchester City Football Club is an English football club based in Manchester that competes in the Premier League, the top flight of English football. Founded in 1880 as St. Mark''s, it became Ardwick Association Football Club in 1887 and Manchester City in 1894','City.jpg',to_date('02-JUN-21','DD-MON-RR'),to_date('02-JUN-21','DD-MON-RR'),'accepte',3,1);
+Insert into JOURNAL.ARTICLE (IDA,TITRE,TEXT,IMG,DATEPUB,DATECREATION,ETAT,IDJ,IDCAT) values (3,'Biden decries ‘horrific’ Tulsa massacre in emotional speech','TULSA, Okla. (AP) — An emotional President Joe Biden marked the 100th anniversary of the massacre that destroyed a thriving Black community in Tulsa, declaring Tuesday that he had “come to fill the silence” about one of the nation’s darkest — and long suppressed — moments of racial violence.
+
+“Some injustices are so heinous, so horrific, so grievous, they cannot be buried, no matter how hard people try,” Biden said. “Only with truth can come healing.”
+
+Biden’s commemoration of the deaths of hundreds of Black people killed by a white mob a century ago came amid the current national reckoning on racial justice.','BD.jpg',to_date('02-JUN-21','DD-MON-RR'),to_date('02-JUN-21','DD-MON-RR'),'accepte',1,2);
+Insert into JOURNAL.ARTICLE (IDA,TITRE,TEXT,IMG,DATEPUB,DATECREATION,ETAT,IDJ,IDCAT) values (4,'classico','El Clásico or el clásico[1] (Spanish pronunciation: [el ?klasiko]; Catalan: El Clàssic,[2] pronounced [?l ?klasik]; "The Classic") is the name given in football to any match between fierce rivals FC Barcelona and Real Madrid. Originally it referred only to those competitions held in the Spanish championship, but nowadays the term has been generalized, and tends to include every single match between the two clubs: UEFA Champions League, Copa del Rey, etc. Other than the UEFA Champions League Final, it is considered one of the biggest club football games in the world, and is among the most viewed annual sporting events.[3][4][5] A fixture known for its intensity, it has featured memorable goal celebrations from both teams, often involving mocking the opposition.','fcbvsreal.jpg',to_date('02-JUN-21','DD-MON-RR'),to_date('02-JUN-21','DD-MON-RR'),'en cours',3,1);
+Insert into JOURNAL.ARTICLE (IDA,TITRE,TEXT,IMG,DATEPUB,DATECREATION,ETAT,IDJ,IDCAT) values (5,'one direction','One Direction, often shortened to 1D, are an English-Irish pop boy band formed in London, England in 2010. The group are composed of Niall Horan, Liam Payne, Harry Styles and Louis Tomlinson; former member Zayn Malik departed from the group in March 2015.','One Direction.jpg',to_date('02-JUN-21','DD-MON-RR'),to_date('02-JUN-21','DD-MON-RR'),'en cours',1,3);
+Insert into JOURNAL.ARTICLE (IDA,TITRE,TEXT,IMG,DATEPUB,DATECREATION,ETAT,IDJ,IDCAT) values (14,'Khalid','Khalid Donnel Robinson (born February 11, 1998)[1] is an American singer-songwriter. He is signed to Right Hand Music Group and RCA Records. In March 2017, Khalid released his debut studio album, American Teen, the album spawned the US top-20 singles, "Location" and â??Young Dumb & Brokeâ??, and was later certified double platinum by the Recording Industry Association of America (RIAA).
+
+Later that year he was featured on Logicâ??s US top-ten single, â??1-800-273-8255â??, with Alessia Cara, which earned him a Grammy Award','khalid.jpg',to_date('07-JUN-21','DD-MON-RR'),to_date('05-JUN-21','DD-MON-RR'),'accepte',1,3);
+REM INSERTING into JOURNAL.CATEGORIE
+SET DEFINE OFF;
+Insert into JOURNAL.CATEGORIE (IDCAT,DESCRIPTION) values (1,'sport');
+Insert into JOURNAL.CATEGORIE (IDCAT,DESCRIPTION) values (2,'politique');
+Insert into JOURNAL.CATEGORIE (IDCAT,DESCRIPTION) values (3,'musique');
+REM INSERTING into JOURNAL.COMMENTAIRE
+SET DEFINE OFF;
+Insert into JOURNAL.COMMENTAIRE (IDC,PSEUDO,TITRE,DATECOM,TEXT,EMAIL,ETAT,NBRLIKE,NBRUNLIKE,IDA,SESSIONID) values (1,'saadelgh99','thNKA',to_date('27-MAY-21','DD-MON-RR'),'niice','elghanemysaad@gmail.com','en cours',0,0,1,'9AD26A8B1251296AB0DF28D8CB6729C3');
+REM INSERTING into JOURNAL.COMPTE
+SET DEFINE OFF;
+Insert into JOURNAL.COMPTE (LOGIN,MDP,ROLE) values ('samir','samir','journaliste');
+Insert into JOURNAL.COMPTE (LOGIN,MDP,ROLE) values ('nabil','nabil','redacteur en chef');
+REM INSERTING into JOURNAL.JOURNALISTE
+SET DEFINE OFF;
+Insert into JOURNAL.JOURNALISTE (IDJ,NOM,PRENOM,EMAIL,LOGIN) values (1,'elghanemy','saad','samir@gmail.com','samir');
+Insert into JOURNAL.JOURNALISTE (IDJ,NOM,PRENOM,EMAIL,LOGIN) values (3,'nabil','foad','nabil@gmail.com','nabil');
+REM INSERTING into JOURNAL.LIKES
+SET DEFINE OFF;
+--------------------------------------------------------
+--  DDL for Index CONSTRAINT_LIKES_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "JOURNAL"."CONSTRAINT_LIKES_PK" ON "JOURNAL"."LIKES" ("SESSIONID", "IDC") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table COMMENTAIRE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."COMMENTAIRE" ADD PRIMARY KEY ("IDC")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "JOURNAL"."COMMENTAIRE" ADD CHECK (etat in('accepte','refuse','en cours')) ENABLE;
+--------------------------------------------------------
+--  Constraints for Table JOURNALISTE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."JOURNALISTE" ADD PRIMARY KEY ("IDJ")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table LIKES
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."LIKES" ADD CONSTRAINT "CONSTRAINT_LIKES_PK" PRIMARY KEY ("SESSIONID", "IDC")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "JOURNAL"."LIKES" ADD CONSTRAINT "CONSTRAINT_LIKES_CK" CHECK (action in ('like','unlike')) ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CATEGORIE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."CATEGORIE" ADD PRIMARY KEY ("IDCAT")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table COMPTE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."COMPTE" ADD PRIMARY KEY ("LOGIN")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "JOURNAL"."COMPTE" ADD CHECK (role in('journaliste','redacteur en chef')) ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ARTICLE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."ARTICLE" ADD PRIMARY KEY ("IDA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "JOURNAL"."ARTICLE" ADD CHECK (etat in('accepte','refuse','en cours')) ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ARTICLE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."ARTICLE" ADD CONSTRAINT "IDCA_CATEG_FK" FOREIGN KEY ("IDCAT")
+	  REFERENCES "JOURNAL"."CATEGORIE" ("IDCAT") ENABLE;
+  ALTER TABLE "JOURNAL"."ARTICLE" ADD CONSTRAINT "IDJ_JOURN_FK" FOREIGN KEY ("IDJ")
+	  REFERENCES "JOURNAL"."JOURNALISTE" ("IDJ") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table COMMENTAIRE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."COMMENTAIRE" ADD FOREIGN KEY ("IDA")
+	  REFERENCES "JOURNAL"."ARTICLE" ("IDA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table JOURNALISTE
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."JOURNALISTE" ADD CONSTRAINT "LOG_CMPT_FK" FOREIGN KEY ("LOGIN")
+	  REFERENCES "JOURNAL"."COMPTE" ("LOGIN") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table LIKES
+--------------------------------------------------------
+
+  ALTER TABLE "JOURNAL"."LIKES" ADD FOREIGN KEY ("IDC")
+	  REFERENCES "JOURNAL"."COMMENTAIRE" ("IDC") ENABLE;
